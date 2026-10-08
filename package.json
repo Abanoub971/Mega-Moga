@@ -1,0 +1,28 @@
+{
+  "name": "saint-paul-one-thread",
+  "version": "1.0.0",
+  "description": "«خيط واحد» — فيلم تعريفي 30 ثانية لخدمة القديس بولس القبطية",
+  "scripts": {
+    "preview": "node scripts/server.mjs",
+    "render": "node scripts/render.mjs",
+    "audio": "python3 scripts/audio.py",
+    "build": "bash scripts/build.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abanoub971/Mega-Moga.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Abanoub971/Mega-Moga/issues"
+  },
+  "homepage": "https://github.com/Abanoub971/Mega-Moga#readme",
+  "dependencies": {
+    "@fontsource/amiri": "^5.3.0",
+    "@fontsource/aref-ruqaa": "^5.3.0",
+    "@fontsource/noto-kufi-arabic": "^5.3.0",
+    "@fontsource/noto-sans-coptic": "^5.3.0",
+    "playwright": "^1.56.1"
+  },
+  "type": "module",
+  "private": true
+}

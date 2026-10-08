@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>خيط واحد — خدمة القديس بولس</title>
+<style>
+  html, body { margin: 0; background: #000; color: #d6ae6c; font-family: sans-serif; }
+  canvas { display: block; width: 100vw; max-width: 1920px; aspect-ratio: 16/9; margin: 0 auto; background: #0a0705; }
+  body.render canvas { width: 1920px; height: 1080px; max-width: none; }
+  #ui { display: flex; gap: 12px; align-items: center; justify-content: center; padding: 10px; direction: ltr; }
+  body.render #ui { display: none; }
+  input[type=range] { width: 60vw; }
+  button { background: #2a1d12; color: #f3e7d0; border: 1px solid #6b4f2a; padding: 6px 14px; border-radius: 4px; cursor: pointer; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="ui">
+  <button id="play">▶︎ تشغيل</button>
+  <input id="scrub" type="range" min="0" max="30" step="0.0333" value="0">
+  <span id="tc">0.00</span>
+</div>
+<audio id="aud" src="../build/audio.wav" preload="auto"></audio>
+<script type="module">
+  import { init, renderFrame, timeline, DURATION } from './film.js';
+  const render = new URLSearchParams(location.search).has('render');
+  if (render) document.body.classList.add('render');
+  await init(document.getElementById('c'));
+  window.renderFrame = renderFrame;
+  window.getTimeline = timeline;
+  window.filmReady = true;
+  renderFrame(0);
+  if (!render) {
+    const aud = document.getElementById('aud'), scrub = document.getElementById('scrub'), tc = document.getElementById('tc');
+    let playing = false, t0 = 0, start = 0;
+    const show = t => { renderFrame(t); scrub.value = t; tc.textContent = t.toFixed(2); };
+    const loop = now => {
+      if (!playing) return;
+      const t = aud.readyState >= 2 && !aud.paused ? aud.currentTime : t0 + (now - start) / 1000;
+      if (t >= DURATION) { playing = false; aud.pause(); show(DURATION - 1e-3); return; }
+      show(t); requestAnimationFrame(loop);
+    };
+    document.getElementById('play').onclick = () => {
+      playing = !playing;
+      if (playing) { t0 = +scrub.value >= DURATION - 0.05 ? 0 : +scrub.value; start = performance.now(); aud.currentTime = t0; aud.play().catch(() => {}); requestAnimationFrame(loop); }
+      else aud.pause();
+    };
+    scrub.oninput = () => { playing = false; aud.pause(); show(+scrub.value); };
+  }
+</script>
+</body>
+</html>
