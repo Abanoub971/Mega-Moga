@@ -39,6 +39,14 @@ node scripts/render.mjs     # الصورة فقط → build/video.mp4 + build/ti
 python3 scripts/audio.py    # الصوت فقط → build/audio.wav (يحتاج timeline.json)
 ```
 
+## نسخة بالتعليق الصوتي (Gemini TTS)
+
+1. ولّد كل جملة من `vo/cues.json` كملف منفصل في Google AI Studio.
+2. سمِّ الملفات `vo/01.wav` … `vo/07.wav` (أو mp3).
+3. شغّل `python3 scripts/mix_vo.py` → `output/saint-paul-one-thread-30s-vo.mp4`
+
+السكريبت يقص الصمت، ويضع كل جملة في موعدها، ويخفض الموسيقى تحتها، ويحذّر لو جملة أطول من مساحتها.
+
 ## التعديل
 
 - **كل النصوص** في `src/config.js`: العناوين، واسم الخدمة، والآية، والكلمة القبطية (اجعلها `''` لإخفائها).
