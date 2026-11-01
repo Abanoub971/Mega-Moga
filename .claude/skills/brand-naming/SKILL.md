@@ -19,6 +19,16 @@ These came from a real naming session that went through four rejected rounds bef
 - **Check before recommending.** Every name you recommend needs a web check for same-name companies in the same category and region. Say plainly which names you checked and which you didn't.
 - **Say the bad news yourself.** Hidden English words, slang, weapon brands and political symbols kill names after launch. Find them before the user does.
 
+## Step 0: Calibrate taste (do this first, with AskUserQuestion)
+
+In the session this skill came from, four rounds of names were rejected. Then a three-question multiple-choice check found the real problem in under a minute: the user wanted **sound and attitude**, not meaning. Ask these before generating anything:
+
+1. **What feel?** Offer 4 example clusters taken from names the user already likes or listed. For example: short and bold (Stink / Rogue / JOE), quirky and elegant (Somesuch / Prettybird), heavy with a stance (Partizan / ICONOCLAST), local and authentic (Bedouin / Tasweer).
+2. **What language?** Global English / easy Arabic / coined word / any language as long as it sounds strong.
+3. **When they reject a name, ask why.** Offer: the sound, too historical, the meaning doesn't land, can't say why. The answer tells you which way to steer.
+
+If the user picks "short and bold" + "sound": go for 1–2 syllables, hard stops (K, T, D, G, R) and back vowels (o, u). Prefer words that describe bad behaviour and wear it proudly (rogue, stink, rude, knucklehead). Drop the story-first approach.
+
 ## Step 1: Brief (one question at most)
 
 Collect, or assume and state:
